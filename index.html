@@ -57,6 +57,14 @@ button{font:inherit;color:inherit;cursor:pointer}
 #rot{position:fixed;left:0;right:0;top:0;bottom:0;display:none;place-items:center;text-align:center;background:#0a0818;z-index:20;font-size:20px}
 @media (orientation:portrait){#rot{display:grid}}
 </style>
+<style>html,body,button,canvas{touch-action:manipulation}</style>
+<script>
+(function(){var last=0,ok=function(t){return !/^(INPUT|TEXTAREA)$/.test(t.tagName);};
+document.addEventListener('touchend',function(e){var n=Date.now();if(n-last<350&&ok(e.target))e.preventDefault();last=n;},{passive:false});
+['gesturestart','gesturechange','gestureend'].forEach(function(t){document.addEventListener(t,function(e){e.preventDefault();});});
+document.addEventListener('dblclick',function(e){if(ok(e.target))e.preventDefault();});
+document.addEventListener('touchmove',function(e){if(e.touches.length>1)e.preventDefault();},{passive:false});})();
+</script>
 </head>
 <body>
 <canvas id="c"></canvas><div id="fx"></div>
